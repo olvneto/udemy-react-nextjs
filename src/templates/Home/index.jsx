@@ -66,7 +66,7 @@ export class Home extends Component {
         {filteredPosts.length === 0 && <p>Não existem posts =(</p>}
 
         <div className="button-container">
-          {!searchValue && <Button text="Load more posts" onClick={this.loadMorePosts} disabled={noMorePosts} />}
+          {!searchValue && <Button text="Load more posts" actionFn={this.loadMorePosts} disabled={noMorePosts} />}
         </div>
       </section>
     );
