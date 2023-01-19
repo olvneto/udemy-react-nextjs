@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
 import React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import './styles.css';
 
@@ -9,25 +9,22 @@ import { Button } from '../../components/Button';
 import { TextInput } from '../../components/TextInput';
 
 export const Home = () => {
-
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [postsPerPage] = useState(10);
   const [searchValue, setSearchValue] = useState('');
 
-  const noMorePosts = (page + postsPerPage) >= allPosts.length;
+  const noMorePosts = page + postsPerPage >= allPosts.length;
 
   // eslint-disable-next-line no-extra-boolean-cast
-  const filteredPosts = !!searchValue ?
-    allPosts.filter(post => {
-      return post.title.toLowerCase().includes(
-        searchValue.toLowerCase()
-      );
-    }) : posts;
+  const filteredPosts = !!searchValue
+    ? allPosts.filter((post) => {
+      return post.title.toLowerCase().includes(searchValue.toLowerCase());
+    })
+    : posts;
 
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
-
     const postsAndPhotos = await loadPosts();
 
     setPosts(postsAndPhotos.slice(page, postsPerPage));
@@ -44,7 +41,7 @@ export const Home = () => {
     posts.push(...nextPosts);
     setPosts(posts);
     setPage(nextPage);
-  }
+  };
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -68,6 +65,4 @@ export const Home = () => {
       </div>
     </section>
   );
-}
-
-
+};
