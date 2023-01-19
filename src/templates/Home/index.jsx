@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 
 import './styles.css';
 
@@ -17,6 +18,7 @@ export const Home = () => {
 
   const noMorePosts = (page + postsPerPage) >= allPosts.length;
 
+  // eslint-disable-next-line no-extra-boolean-cast
   const filteredPosts = !!searchValue ?
     allPosts.filter(post => {
       return post.title.toLowerCase().includes(
