@@ -17,9 +17,9 @@ export const Posts = ({ posts = [] }) => (
   </div>
 );
 
-Posts.default = {
-  posts: [],
-}
+// Posts.default = {
+//   posts: [],
+// }
 
 Posts.propTypes = {
   posts: P.array,
