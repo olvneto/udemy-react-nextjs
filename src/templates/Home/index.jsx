@@ -12,7 +12,7 @@ export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(0);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(2);
   const [searchValue, setSearchValue] = useState('');
 
   const noMorePosts = page + postsPerPage >= allPosts.length;
@@ -20,8 +20,8 @@ export const Home = () => {
   // eslint-disable-next-line no-extra-boolean-cast
   const filteredPosts = !!searchValue
     ? allPosts.filter((post) => {
-      return post.title.toLowerCase().includes(searchValue.toLowerCase());
-    })
+        return post.title.toLowerCase().includes(searchValue.toLowerCase());
+      })
     : posts;
 
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
@@ -33,7 +33,7 @@ export const Home = () => {
 
   useEffect(() => {
     handleLoadPosts(0, postsPerPage);
-  }, [handleLoadPosts, postsPerPage])
+  }, [handleLoadPosts, postsPerPage]);
 
   const loadMorePosts = () => {
     const nextPage = page + postsPerPage;
@@ -61,7 +61,13 @@ export const Home = () => {
       {filteredPosts.length === 0 && <p>Não existem posts :(</p>}
 
       <div className="button-container">
-        {!searchValue && <Button text="Load more posts" actionFn={loadMorePosts} disabled={noMorePosts} />}
+        {!searchValue && (
+          <Button
+            text="Load more posts"
+            actionFn={loadMorePosts}
+            disabled={noMorePosts}
+          />
+        )}
       </div>
     </section>
   );
